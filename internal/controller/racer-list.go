@@ -35,11 +35,12 @@ func (ctrl RacerList) GetRacers(c echo.Context) error {
 
 	for index, racer := range racers {
 		viewModel.Racers[index] = RacerViewModel{
-			Name: racer.Name,
-			ID:   racer.ID,
+			Name:   racer.Name,
+			ID:     racer.ID,
+			Image:  racer.Image,
+			Rating: racer.Rating,
 		}
 	}
 
 	return c.Render(http.StatusOK, "racer-list.html", viewModel)
-
 }

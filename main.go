@@ -1,14 +1,12 @@
 package main
 
 import (
-	"log"
-
 	"github.com/labstack/echo/v4"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/reb00ter/racers/config"
 	"github.com/reb00ter/racers/internal/controller"
 	"github.com/reb00ter/racers/internal/core"
-	"github.com/reb00ter/racers/internal/models"
+	"log"
 )
 
 func main() {
@@ -23,6 +21,7 @@ func main() {
 
 	racerCtrl := &controller.Racer{}
 	racerListCtrl := &controller.RacerList{}
+	racerChallengeCtrl := controller.NewRacerChallenge()
 	healthCtrl := &controller.Healthcheck{}
 
 	// api endpoints
@@ -30,25 +29,19 @@ func main() {
 	g.GET("/racers/:id", racerCtrl.GetRacerJSON)
 
 	// pages
-	u := server.Echo.Group("/racers")
-	u.GET("", racerListCtrl.GetRacers)
-	u.GET("/:id", racerCtrl.GetRacer)
+	r := server.Echo.Group("/racers")
+	r.GET("", racerListCtrl.GetRacers)
+	r.GET("/challenge", racerChallengeCtrl.GetChallenge)
+	r.POST("/challenge", racerChallengeCtrl.Vote)
+	r.GET("/:id", racerCtrl.GetRacer)
 
 	// metric / health endpoint according to RFC 5785
 	server.Echo.GET("/.well-known/health-check", healthCtrl.GetHealthcheck)
 	server.Echo.GET("/.well-known/metrics", echo.WrapHandler(promhttp.Handler()))
 
 	// migration for dev
-	user := models.Racer{Name: "Peter"}
 	mr := server.GetModelRegistry()
-	err = mr.Register(user)
-
-	if err != nil {
-		server.Echo.Logger.Fatal(err)
-	}
-
 	mr.AutoMigrateAll()
-	mr.Create(&user)
 	// Start server
 	go func() {
 		if err := server.Start(appConfig.Address); err != nil {

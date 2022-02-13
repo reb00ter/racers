@@ -1,17 +1,15 @@
 package errors
 
 const (
-	InternalError       = "internalError"
-	RacerNotFound       = "racerNotFound"
-	InvalidBindingModel = "invalidBindingModel"
-	EntityCreationError = "entityCreationError"
+	InternalError = "internalError"
+	RacerNotFound = "racerNotFound"
+	BadRequest    = "BadRequest"
 )
 
 var errorMessage = map[string]string{
-	"internalError":       "an internal error occured",
-	"racerNotFound":       "racer could not be found",
-	"invalidBindingModel": "model could not be bound",
-	"EntityCreationError": "could not create entity",
+	"internalError": "an internal error occured",
+	"racerNotFound": "racer could not be found",
+	"BadRequest":    "check your data and try again",
 }
 
 // Booms can contain multiple boom errors
@@ -27,7 +25,7 @@ func NewBooms() Booms {
 	return Booms{}
 }
 
-// boom represent the basic structure of an json error
+// Boom represent the basic structure of a json error
 type Boom struct {
 	Code    string      `json:"code"`
 	Message string      `json:"message"`

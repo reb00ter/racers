@@ -60,6 +60,6 @@ air
 air.log
 
 # test data
-cockroach-data
 bin
 /node_modules/
+/.cockroach-data/

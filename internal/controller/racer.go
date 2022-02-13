@@ -12,8 +12,10 @@ import (
 type (
 	Racer          struct{}
 	RacerViewModel struct {
-		Name string
-		ID   string
+		Name   string
+		ID     string
+		Image  string
+		Rating int64
 	}
 )
 
@@ -32,8 +34,10 @@ func (ctrl Racer) GetRacer(c echo.Context) error {
 	}
 
 	vm := RacerViewModel{
-		Name: racer.Name,
-		ID:   racer.ID,
+		Name:   racer.Name,
+		ID:     racer.ID,
+		Image:  racer.Image,
+		Rating: racer.Rating,
 	}
 
 	return c.Render(http.StatusOK, "racer.html", vm)
@@ -55,8 +59,10 @@ func (ctrl Racer) GetRacerJSON(c echo.Context) error {
 	}
 
 	vm := RacerViewModel{
-		Name: racer.Name,
-		ID:   racer.ID,
+		Name:   racer.Name,
+		ID:     racer.ID,
+		Image:  racer.Image,
+		Rating: racer.Rating,
 	}
 
 	return c.JSON(http.StatusOK, vm)

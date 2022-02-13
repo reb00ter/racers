@@ -23,6 +23,7 @@ type Configuration struct {
 	Lang             string `env:"LANG" envDefault:"en_US"`
 	LangDomain       string `env:"LANG_DOMAIN" envDefault:"default"`
 	JwtSecret        string `env:"JWT_SECRET,required"`
+	HashSalt         string `env:"HASH_SALT" envDefault:"Qwerty.123"`
 }
 
 func NewConfig(files ...string) (*Configuration, error) {

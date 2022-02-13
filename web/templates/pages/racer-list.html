@@ -1,4 +1,4 @@
-{{define "title"}}User list{{end}}
+{{define "title"}}Racers{{end}}
 
 {{define "header"}}
 <div class="header-component" data-message="User list"></div>
@@ -8,7 +8,7 @@
 
 <div class="d-flex flex-column bd-highlight mb-3">
   {{range .Racers}}
-  <div class="p-2 bd-highlight">{{.Name}}: <a href="/racers/{{.ID}}">Details</a></div>
+  <div class="p-2 bd-highlight">{{.Rating}} {{.Name}}: <a href="/racers/{{.ID}}">Details</a></div>
   {{end}}
 </div>
 

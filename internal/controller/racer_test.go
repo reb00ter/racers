@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"github.com/google/uuid"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -13,6 +14,18 @@ import (
 )
 
 type RacerFakeStore struct{}
+
+func (s *RacerFakeStore) Challenge(m *[]models.Racer) error {
+	return nil
+}
+
+func (s *RacerFakeStore) VoteUp(racerId uuid.UUID) error {
+	return nil
+}
+
+func (s *RacerFakeStore) VoteDown(racerId uuid.UUID) error {
+	return nil
+}
 
 func (s *RacerFakeStore) First(m *models.Racer) error {
 	return nil
