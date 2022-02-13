@@ -40,22 +40,22 @@ func (s *RacerFakeStore) Ping() error {
 	return nil
 }
 
-func TestUserPage(t *testing.T) {
-	req := httptest.NewRequest(echo.GET, "/users/"+e.testRacer.ID, nil)
+func TestRacerPage(t *testing.T) {
+	req := httptest.NewRequest(echo.GET, "/racers/"+e.testRacer.ID, nil)
 	rec := httptest.NewRecorder()
 	e.server.Echo.ServeHTTP(rec, req)
 
 	assert.Equal(t, http.StatusOK, rec.Code)
 }
 
-func TestUnitGetUserJson(t *testing.T) {
+func TestUnitGetRacerJson(t *testing.T) {
 	s := echo.New()
 	g := s.Group("/api")
 
-	req := httptest.NewRequest(echo.GET, "/api/users/"+e.testRacer.ID, nil)
+	req := httptest.NewRequest(echo.GET, "/api/racers/"+e.testRacer.ID, nil)
 	rec := httptest.NewRecorder()
 
-	userCtrl := &Racer{}
+	racerCtrl := &Racer{}
 
 	cc := &context.AppContext{
 		Config:     e.config,
@@ -64,7 +64,7 @@ func TestUnitGetUserJson(t *testing.T) {
 
 	s.Use(middleware.AppContext(cc))
 
-	g.GET("/users/:id", userCtrl.GetRacerJSON)
+	g.GET("/racers/:id", racerCtrl.GetRacerJSON)
 	s.ServeHTTP(rec, req)
 
 	assert.Equal(t, http.StatusOK, rec.Code)

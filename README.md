@@ -62,7 +62,7 @@ docker run --network="host" -it cockroachdb/cockroach:v19.2.1 sql --insecure -e 
 go run main.go
 ```
 
-5. Navigate to users list [page](http://127.0.0.1/users)
+5. Navigate to racers list [page](http://127.0.0.1/racers)
 
 ## CI and Static Analysis
 
@@ -112,7 +112,7 @@ Visit localhost:6060 and search for `go-web`
 # Benchmarking
 
 ```
-$ bombardier -c 10 -n 10000 http://localhost:8080/users
+$ bombardier -c 10 -n 10000 http://localhost:8080/racers
 ```
 
 # Cockroachdb Cluster overview

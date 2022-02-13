@@ -42,27 +42,27 @@ func setup() {
 	healthCtrl := &Healthcheck{}
 
 	g := e.server.Echo.Group("/api")
-	g.GET("/users/:id", racerCtrl.GetRacerJSON)
+	g.GET("/racers/:id", racerCtrl.GetRacerJSON)
 
-	u := e.server.Echo.Group("/users")
+	u := e.server.Echo.Group("/racers")
 	u.GET("/:id", racerCtrl.GetRacer)
 
 	e.server.Echo.GET("/.well-known/health-check", healthCtrl.GetHealthcheck)
 	e.server.Echo.GET("/.well-known/metrics", echo.WrapHandler(promhttp.Handler()))
 
 	// test data
-	user := models.Racer{Name: "Peter"}
+	racer := models.Racer{Name: "Peter"}
 	mr := e.server.GetModelRegistry()
-	err := mr.Register(user)
+	err := mr.Register(racer)
 
 	if err != nil {
 		e.server.Echo.Logger.Fatal(err)
 	}
 
 	mr.AutoMigrateAll()
-	mr.Save(&user)
+	mr.Save(&racer)
 
-	e.testRacer = &user
+	e.testRacer = &racer
 }
 
 func tearDown() {
