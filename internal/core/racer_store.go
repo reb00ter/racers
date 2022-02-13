@@ -21,7 +21,7 @@ func (s *RacerStore) Create(m *models.Racer) error {
 }
 
 func (s *RacerStore) Find(m *[]models.Racer) error {
-	return s.DB.Order("rating").Find(m).Error
+	return s.DB.Order("rating desc").Find(m).Error
 }
 
 func (s *RacerStore) Challenge(m *[]models.Racer) error {
