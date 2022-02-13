@@ -25,7 +25,7 @@ func (s *RacerStore) Find(m *[]models.Racer) error {
 }
 
 func (s *RacerStore) Challenge(m *[]models.Racer) error {
-	query := s.DB.Debug().Raw("SELECT * FROM racers ORDER BY RANDOM() LIMIT ?", 2).Scan(&m)
+	query := s.DB.Raw("SELECT * FROM racers ORDER BY RANDOM() LIMIT ?", 2).Scan(&m)
 	if query.Error != nil {
 		return query.Error
 	}
@@ -36,7 +36,7 @@ func (s *RacerStore) Challenge(m *[]models.Racer) error {
 }
 
 func (s *RacerStore) VoteUp(racerId uuid.UUID) error {
-	query := s.DB.Debug().Exec("UPDATE racers SET rating = rating + 1 WHERE id = ?", racerId)
+	query := s.DB.Exec("UPDATE racers SET rating = rating + 1 WHERE id = ?", racerId)
 	if query.Error != nil {
 		return query.Error
 	}
@@ -47,7 +47,7 @@ func (s *RacerStore) VoteUp(racerId uuid.UUID) error {
 }
 
 func (s *RacerStore) VoteDown(racerId uuid.UUID) error {
-	query := s.DB.Debug().Exec("UPDATE racers SET rating = rating - 1 WHERE id = ?", racerId)
+	query := s.DB.Exec("UPDATE racers SET rating = rating - 1 WHERE id = ?", racerId)
 	if query.Error != nil {
 		return query.Error
 	}
