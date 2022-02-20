@@ -6,9 +6,10 @@
 
 {{define "content"}}
   <div class="row">
-    <div class="d-flex flex-column bd-highlight mb-3">
-      <div class="p-2 bd-highlight">Name: {{.Racer1.Name}}</div>
-      <div class="p-2 bd-highlight">
+    <div class="col mb-3">
+      <div class="p-2">Name: {{.Racer1.Name}}<br>
+          {{if .Racer1.Image }}<img src="{{.Racer1.Image}}" width="300" alt="{{.Racer1.Name}}">{{else}}No photo{{end}}</div>
+      <div class="p-2">
         <form method="post">
           <input type="hidden" name="token" value="{{.Token}}">
           <input type="hidden" name="vote" value="{{.Vote1}}">
@@ -17,9 +18,10 @@
       </div>
     </div>
 
-    <div class="d-flex flex-column bd-highlight mb-3">
-      <div class="p-2 bd-highlight">Name: {{.Racer2.Name}}</div>
-      <div class="p-2 bd-highlight">
+    <div class="col mb-3">
+      <div class="p-2">Name: {{.Racer2.Name}}<br>
+          {{if .Racer2.Image }}<img src="{{.Racer2.Image}}" width="300" alt="{{.Racer2.Name}}">{{else}}No photo{{end}}</div>
+      <div class="p-2">
         <form method="post">
           <input type="hidden" name="token" value="{{.Token}}">
           <input type="hidden" name="vote" value="{{.Vote2}}">
