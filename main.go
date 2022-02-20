@@ -44,7 +44,7 @@ func main() {
 	mr.AutoMigrateAll()
 	// Start server
 	go func() {
-		if err := server.Start(appConfig.Address); err != nil {
+		if err := server.Start("0.0.0.0:" + appConfig.Port); err != nil {
 			server.Echo.Logger.Info("shutting down the server")
 		}
 	}()

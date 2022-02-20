@@ -8,7 +8,7 @@ import (
 )
 
 type Configuration struct {
-	Address          string `env:"ADDRESS" envDefault:":8080"`
+	Port             string `env:"PORT" envDefault:"8080"`
 	Dialect          string `env:"DIALECT,required" envDefault:"postgres"`
 	AssetsBuildDir   string `env:"ASSETS_BUILD_DIR" envDefault:"web"`
 	TemplateDir      string `env:"TPL_DIR"`
