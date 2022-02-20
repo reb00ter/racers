@@ -6,10 +6,22 @@
 
 {{define "content"}}
 
-<div class="d-flex flex-column bd-highlight mb-3">
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Rating</th>
+    <th scope="col">Name</th>
+    <th scope="col">Details</th>
+  </tr>
+  </thead>
+  <tbody>
   {{range .Racers}}
-  <div class="p-2 bd-highlight">{{.Rating}} {{.Name}}: <a href="/racers/{{.ID}}">Details</a></div>
+  <tr>
+    <td>{{.Rating}}</td>
+    <td>{{.Name}}</td>
+    <td><a href="/racers/{{.ID}}">Details</a></td>
+  </tr>
   {{end}}
-</div>
+</table>
 
 {{end}}
