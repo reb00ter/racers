@@ -30,9 +30,6 @@ npm-debug.log
 testem.log
 /typings
 
-# dist
-dist
-
 # debug
 npm-debug.log*
 yarn-debug.log*
