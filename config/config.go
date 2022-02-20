@@ -15,7 +15,7 @@ type Configuration struct {
 	LayoutDir        string `env:"LAYOUT_DIR"`
 	RedisAddr        string `env:"REDIS_ADDR" envDefault:":6379"`
 	RedisPwd         string `env:"REDIS_PWD"`
-	ConnectionString string `env:"CONNECTION_STRING,required"`
+	ConnectionString string `env:"DATABASE_URL,required"`
 	IsProduction     bool   `env:"PRODUCTION"`
 	GrayLogAddr      string `env:"GRAYLOG_ADDR"`
 	RequestLogger    bool   `env:"REQUEST_LOGGER"`
