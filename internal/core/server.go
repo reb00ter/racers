@@ -11,7 +11,6 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo/v4"
 	"github.com/reb00ter/racers/config"
-	"github.com/reb00ter/racers/internal/cache"
 	"github.com/reb00ter/racers/internal/i18n"
 	"github.com/reb00ter/racers/internal/models"
 )
@@ -36,7 +35,6 @@ func NewServer(config *config.Configuration) *Server {
 		log.Fatalf("gorm: could not connect to db %q", err)
 	}
 
-	server.cache = cache.NewCache(config)
 	server.db = server.modelRegistry.DB
 	server.Echo = NewRouter(server)
 
